@@ -25,12 +25,11 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      - name: Deploy to Tencent CloudBase
-        uses: tencent-cloud/tcb-action@v2
-        with:
-          secretId: ${{ secrets.TCB_SECRET_ID }}
-          secretKey: ${{ secrets.TCB_SECRET_KEY }}
-          # ⚠️⚠️⚠️ 请将下面的 YOUR_ENV_ID 替换为你在腾讯云云开发控制台看到的 环境ID ⚠️⚠️⚠️
-          envId: 'cloud1-9gws584d117bd183'
-          # 部署 dist 文件夹的内容
-          staticSrcPath: 'dist'
+      - name: Install CloudBase CLI
+        run: npm install -g @cloudbase/cli
+
+      - name: Login CloudBase CLI
+        run: tcb login --apiKeyId ${{ secrets.TCB_SECRET_ID }} --apiKey ${{ secrets.TCB_SECRET_KEY }}
+
+      - name: Deploy to CloudBase Static Hosting
+        run: tcb hosting deploy ./dist /home -e ${{ secrets.TCB_ENV_ID }}
