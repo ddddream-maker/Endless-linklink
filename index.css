@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+body {
+  touch-action: manipulation;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Combo Flame Animation */
+@keyframes flame-pulse {
+  0% { box-shadow: 0 0 10px #f97316, 0 0 5px #fbbf24; border-color: #f97316; }
+  50% { box-shadow: 0 0 20px #f97316, 0 0 10px #fbbf24, 0 0 5px #fde047; border-color: #fbbf24; }
+  100% { box-shadow: 0 0 10px #f97316, 0 0 5px #fbbf24; border-color: #f97316; }
+}
+
+.flame-border {
+  animation: flame-pulse 1.5s infinite;
+}
