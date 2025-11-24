@@ -1,20 +1,68 @@
 <div align="center">
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+
+# 无穷∞连连看 (Infinite Link-Link)
+
+**挑战你的反应极限，探索无尽的消除乐趣！**
+
 </div>
 
-# Run and deploy your AI Studio app
+## 📖 游戏简介
 
-This contains everything you need to run your app locally.
+《无穷∞连连看》是一款快节奏的无尽模式连连看游戏。与传统连连看不同，本作没有关卡上限，难度随着层数无限递增。你需要在这个充满紧迫感的挑战中，通过快速消除积累分数，维持生命值，并收集各种各样的奇妙图鉴！
 
-View your app in AI Studio: https://ai.studio/apps/drive/102jtqrirORklUJHJyT0PxwH9BRa2uOKA
+## 🎮 核心玩法
 
-## Run Locally
+### 1. 基本规则
+- **连接消除**：点击两个相同的图案，如果它们之间可以通过**不超过两个转弯**的路径连接，即可消除。
+- **时间限制**：每个关卡都有严格的时间限制（Time），时间结束则扣除生命值。
+- **过关条件**：不仅要消除方块，还需要达到当前关卡的**目标分数（Target Score）**。如果消除完所有方块仍未达到目标分数，视为失败。
 
-**Prerequisites:**  Node.js
+### 2. 连击系统 (Combo)
+- **快速消除**：在短时间内连续消除方块可以触发 **Combo**。
+- **分数加成**：Combo 越高，得分倍率越高！保持连击是获得高分和通过高难度关卡的关键。
 
+### 3. 无尽挑战
+- **难度递增**：随着关卡提升，方块数量会增加，排列更加密集，时间更加紧迫。
+- **循环机制**：每 10 关为一个周期，难度阶梯式上升。
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## ❤️ 生命与道具
+
+### 生命值 (Lives)
+- 初始拥有 **3 点生命值**。
+- **扣血条件**：
+  - 时间耗尽。
+  - 消除完所有方块但分数未达标。
+- **回血机制**：每通过 **10** 个关卡（如第10关、20关...），且当前生命值不满 5 点时，奖励 **1 点生命值**。
+- 生命值归零，游戏结束。
+
+### 辅助道具
+游戏界面下方提供强力辅助道具（次数有限，需谨慎使用）：
+- **💡 提示 (Hint)**：自动显示一对可消除的方块。
+- **🔀 重排 (Shuffle)**：将场上剩余方块重新洗牌，打破僵局。
+- *注：道具次数会在进入新关卡时少量补充。*
+
+## 🎒 收藏与财富
+- **金币 (Wealth)**：你的得分就是你的财富！
+- **图鉴 (Collection)**：消除的每一个图案都会被记录在背包中，努力收集所有稀有的“载具”和“怪兽”吧！
+
+## 🏆 排行榜
+- 游戏会自动记录你的最高分、到达层数。
+- 挑战自我，冲击本地排行榜的前十名！
+
+---
+
+## 💻 开发者指南 (Run Locally)
+
+如果你想在本地运行或开发此游戏：
+
+1. **安装依赖**:
+   ```bash
+   npm install
+   ```
+2. **配置环境**:
+   在 `.env.local` 中设置 `GEMINI_API_KEY`（如需 AI 功能）。
+3. **启动游戏**:
+   ```bash
+   npm run dev
+   ```
