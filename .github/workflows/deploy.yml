@@ -11,26 +11,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm' # 启用npm缓存加速构建
 
-      - name: Install Dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm ci # 使用npm ci替代npm install，更适合CI环境
 
-      - name: Build Project
-        run: npm run build
+    - name: Build project
+      run: npm run build
 
-      - name: Deploy to Tencent CloudBase
-        uses: tencent-cloud/tcb-action@v2
-        with:
-          secretId: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
-          secretKey: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
-          # ⚠️⚠️⚠️ 请将下面的 YOUR_ENV_ID 替换为你在腾讯云云开发控制台看到的 环境ID ⚠️⚠️⚠️
-          envId: ‘cloud1-9gws584d117bd183' 
-          # 部署 dist 文件夹的内容
-          staticSrcPath: 'dist'
+    - name: Install CloudBase CLI
+      run: npm install -g @cloudbase/cli
+
+    - name: Login CloudBase CLI
+      run: tcb login --apiKeyId ${{ secrets.TCB_SECRET_ID }} --apiKey ${{ secrets.TCB_SECRET_KEY }}
+
+    - name: Deploy to CloudBase Static Hosting
+      run: tcb hosting deploy ./dist /home -e cloud1-9gws584d117bd183
